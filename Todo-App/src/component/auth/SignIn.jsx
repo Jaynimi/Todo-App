@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 // import { Link } from "react-router-dom";
-import Todo from "../todo";
+import Todo from "../Todo";
 import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {

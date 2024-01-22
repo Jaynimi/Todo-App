@@ -4,7 +4,7 @@ import SignIn from "./component/auth/SignIn";
 import SignUp from "./component/auth/SignUp";
 import AuthDetails from "./component/AuthDetails";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Todo from "./component/todo";
+import Todo from "./component/Todo";
 
 function App() {
   const [count, setCount] = useState(0);
