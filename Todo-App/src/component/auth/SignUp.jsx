@@ -13,7 +13,7 @@ import { db } from "../../firebase";
 //   });
 // }
 
-const SignIn = () => {
+const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -68,4 +68,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
