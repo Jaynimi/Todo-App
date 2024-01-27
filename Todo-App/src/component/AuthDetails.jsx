@@ -28,7 +28,7 @@ const AuthDetails = () => {
       .then(() => {
         console.log("sign out successful");
         setMsg("sign out successful");
-        window.location.assign("/signup");
+        window.location.assign("/");
       })
       .catch((error) => {
         console.log(error);
