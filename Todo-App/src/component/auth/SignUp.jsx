@@ -4,6 +4,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { setDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase";
+import "../../index.css";
 
 // async function saveUser() {
 //   await setDoc(doc(db, "user"), {
@@ -41,28 +42,39 @@ const SignUp = () => {
       });
   };
   return (
-    <div className="sign-in-container">
-      <form action="" onSubmit={signUp}>
-        <h1>Sign Up</h1>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter your Email"
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Enter your Password"
-        />
-        <input
-          type="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Enter your Nickname"
-        />
-        <button type="submit">Create Account</button>
+    <div className="sign-in-container defaultPageCont">
+      <h1 className="appName">CanDoToday</h1>
+      <form action="" onSubmit={signUp} className="formContainer">
+        <div className="inputCont">
+          <p className="inputText">Email</p>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your Email"
+          />
+        </div>
+        <div className="inputCont">
+          <p>Password</p>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Enter your Password"
+          />
+        </div>
+        <div className="inputCont">
+          <p>Username</p>
+          <input
+            type="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Enter your Nickname"
+          />
+        </div>
+        <div className="loginButton">
+          <button type="submit">Create Account</button>
+        </div>
       </form>
     </div>
   );

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { Switch } from "@material-tailwind/react";
 import { FaEdit } from "react-icons/fa";
 import { FaTrashAlt } from "react-icons/fa";
 // import { uid, getUser } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import AuthDetails from "./AuthDetails";
 import { db } from "../firebase";
+import "../index.css";
 
 import {
   getFirestore,
@@ -110,6 +112,8 @@ function Todo() {
           />
           <button type="submit">Add item</button>
         </form>
+        <div className="text-red-500 font-bold">Jay</div>
+        <Switch color="blue" defaultChecked />
       </div>
       <section>
         {todos?.map((cur, index) => (
