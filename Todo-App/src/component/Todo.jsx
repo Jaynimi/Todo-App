@@ -24,7 +24,6 @@ import {
 // });
 
 function Todo() {
-  // console.log(getUser(uid));
   const [todoItem, setTodoItem] = useState("");
   const [user, setUser] = useState({});
   const userEmail = JSON.parse(localStorage.getItem("email"));
@@ -100,57 +99,61 @@ function Todo() {
   }, []);
 
   return (
-    <>
-      <div>
-        <h1></h1>
-        <form action="" onSubmit={addTodo}>
-          <input
-            type="text"
-            placeholder="Enter Todo Item"
-            value={todoItem}
-            onChange={(e) => setTodoItem(e.target.value)}
-          />
-          <button type="submit">Add item</button>
-        </form>
-        <div className="text-red-500 font-bold">Jay</div>
-        <Switch color="blue" defaultChecked />
-      </div>
-      <section>
-        {todos?.map((cur, index) => (
-          <div className={`${cur.itemDone ? "done" : "pending"}`}>
-            <div>
-              <h5>{index + 1}</h5>
-              <h5>{cur.todoItem}</h5>
+    <div className="todoCont">
+      <div className="todoCont1">
+        <div className="todoCont2">
+          <div className="itemFormCont">
+            <h1></h1>
+            <form action="" onSubmit={addTodo}>
               <input
-                onChange={() => {
-                  let status = cur.itemDone;
-                  let todoItem = cur.todoItem;
-                  changeStatus({
-                    index,
-                    todoItem,
-                    status: !status,
-                  });
-                }}
-                type="checkbox"
-                checked={cur.itemDone}
+                type="text"
+                placeholder="Enter Todo Item"
+                value={todoItem}
+                onChange={(e) => setTodoItem(e.target.value)}
               />
-            </div>
-            <div>
-              <button
-                onClick={() => editItem({ index, todoItem: cur.todoItem })}
-              >
-                <FaEdit />
-              </button>
-              <button onClick={() => deleteItem(index)}>
-                <FaTrashAlt />
-              </button>
-            </div>
+              <button type="submit">Add item</button>
+            </form>
+            {/* <div className="text-red-500 font-bold">Jay</div>
+        <Switch color="blue" defaultChecked /> */}
           </div>
-        ))}
-        <button onClick={clearItems}>clear items</button>
-      </section>
-      <AuthDetails />
-    </>
+          <section>
+            {todos?.map((cur, index) => (
+              <div className={`${cur.itemDone ? "done" : "pending"}`}>
+                <div>
+                  <h5>{index + 1}</h5>
+                  <h5>{cur.todoItem}</h5>
+                  <input
+                    onChange={() => {
+                      let status = cur.itemDone;
+                      let todoItem = cur.todoItem;
+                      changeStatus({
+                        index,
+                        todoItem,
+                        status: !status,
+                      });
+                    }}
+                    type="checkbox"
+                    checked={cur.itemDone}
+                  />
+                </div>
+                <div>
+                  <button
+                    onClick={() => editItem({ index, todoItem: cur.todoItem })}
+                  >
+                    <FaEdit />
+                  </button>
+                  <button onClick={() => deleteItem(index)}>
+                    <FaTrashAlt />
+                  </button>
+                </div>
+              </div>
+            ))}
+            <button onClick={clearItems}>clear items</button>
+          </section>
+          <AuthDetails />
+        </div>
+      </div>
+    </div>
   );
 }
 
