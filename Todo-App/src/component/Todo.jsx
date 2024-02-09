@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Switch } from "@material-tailwind/react";
 import { FaEdit } from "react-icons/fa";
 import { FaTrashAlt } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 // import { uid, getUser } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import AuthDetails from "./AuthDetails";
@@ -192,11 +193,13 @@ function Todo() {
                 </div>
               ))}
             </div>
-            <button onClick={clearItems}>clear items</button>
+            <button className="clearItems" onClick={clearItems}>
+              <FaTrash />
+            </button>
           </section>
-          <AuthDetails />
         </div>
       </div>
+      <AuthDetails />
     </div>
   );
 }

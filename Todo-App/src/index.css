@@ -31,7 +31,7 @@
 
 }
 
-.noAccount button {
+.noAccount button, .signOut {
     background-color: transparent;
     color: #94b0a3;
     margin-left: 10px;
@@ -39,7 +39,7 @@
     word-spacing: -2px;
 }
 
-.noAccount button:hover {
+.noAccount button:hover, .signOut:hover {
     cursor: pointer;
     text-decoration: underline;
 }
@@ -49,7 +49,7 @@
 }
 
 .appName {
-    margin-bottom: 50px;
+    margin: 50px 0 30px 0;
     font-family: 'Arizonia', cursive;
     text-align: center;
     color: #53b889;
@@ -118,7 +118,7 @@
     border: solid #ddf1e7 2px;
     background-color: #eef8f3;
     color: black;
-    border-radius: 100px;
+    border-radius: 20px;
     padding: 20px;
 
 }
@@ -127,7 +127,7 @@
     border: solid red 2px;
     background-color: #eef8f3;
     color: black;
-    border-radius: 100px;
+    border-radius: 20px;
     padding: 20px;
 }
 
@@ -145,7 +145,7 @@
 
 .todoCont1 {
     overflow: auto;
-    margin: 30px auto;
+    margin: 0px auto 80px auto;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -172,6 +172,8 @@
     gap: 10px;
     width: 100%;
     padding: 50px 0px;
+    color: #08120e;
+
 }
 
 .itemFormCont {
@@ -191,7 +193,7 @@
     font-size: 1.2rem;
     font-weight: 400;
     max-height: 50px;
-    width: 70%;
+    /* width: 70%; */
     /* text-wrap: wrap; */
     /* color: white; */
     overflow-y: auto;
@@ -206,14 +208,29 @@
     display: none;
 }
 
+@media screen and (max-width: 801px) {
+    .listCont {
+        grid-template-columns: repeat(auto-fill, minmax(45%, 1fr));
+        gap: 10px;
+    }
+}
+@media screen and (max-width: 401px) {
+    .listCont {
+        grid-template-columns: repeat(auto-fill, minmax(85%, 1fr));
+        gap: 10px;
+    }
+}
+
 label {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 10px 10px;
     border: 1px solid #ccc;
-    background-color: red; /* Default background color */
-    color: white; /* Default text color */
+    background-color: red;
+    color: white;
     cursor: pointer;
     border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
   }
 
   .todoItem input[type="checkbox"]:checked + label {
@@ -226,14 +243,40 @@ label {
     flex-direction: row;
     justify-content: space-between;
     padding: 0 20%;
+    padding-top: 15px;
+    border-top: 2px solid #08120e8c;
 }
 
 .editList button {
-    color: #53b889;
+    color: #08120e;
     background-color: transparent;
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 
 .editList button:hover {
     cursor: pointer;
+}
+
+.clearItems {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: transparent;
+    color: rgb(158, 7, 7);
+    /* color: #53b889; */
+    font-size: 50px;
+    z-index: 10;
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    width: 100vw;
+    height: 10vh;
+    background-color: #a0a3a246;
 }
