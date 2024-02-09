@@ -28,6 +28,34 @@ function Todo() {
   const [user, setUser] = useState({});
   const userEmail = JSON.parse(localStorage.getItem("email"));
   const [todos, setTodos] = useState([]);
+  const [labelTexts, setLabelTexts] = useState(
+    Array.from({ length: todos.length }, () => "TODO")
+  );
+
+  // document.getElementById("myLabel").addEventListener("click", function () {
+  //   var checkbox = document.getElementById("myCheckbox");
+  //   checkbox.checked = !checkbox.checked; // Toggle checkbox
+  // });
+
+  const toggleCheckbox = (index) => {
+    const updatedTodos = todos.map((todo, i) => {
+      if (i === index) {
+        return {
+          ...todo,
+          itemDone: !todo.itemDone,
+        };
+      }
+      return todo;
+    });
+    setTodos(updatedTodos);
+
+    // Update the label text for the specific todo item
+    setLabelTexts((prev) => {
+      const newLabelTexts = [...prev];
+      newLabelTexts[index] = newLabelTexts[index] === "TODO" ? "DONE" : "TODO";
+      return newLabelTexts;
+    });
+  };
 
   const getUser = async () => {
     let usersRef = collection(db, "users");
@@ -100,54 +128,70 @@ function Todo() {
 
   return (
     <div className="todoCont">
+      <h1 className="appName">CanDoToday</h1>
+
       <div className="todoCont1">
         <div className="todoCont2">
           <div className="itemFormCont">
             <h1></h1>
             <form action="" onSubmit={addTodo}>
               <input
+                className="enterItem"
                 type="text"
                 placeholder="Enter Todo Item"
                 value={todoItem}
                 onChange={(e) => setTodoItem(e.target.value)}
               />
-              <button type="submit">Add item</button>
+              <button className="submitItem" type="submit">
+                Add item
+              </button>
             </form>
             {/* <div className="text-red-500 font-bold">Jay</div>
         <Switch color="blue" defaultChecked /> */}
           </div>
           <section>
-            {todos?.map((cur, index) => (
-              <div className={`${cur.itemDone ? "done" : "pending"}`}>
-                <div>
-                  <h5>{index + 1}</h5>
-                  <h5>{cur.todoItem}</h5>
-                  <input
-                    onChange={() => {
-                      let status = cur.itemDone;
-                      let todoItem = cur.todoItem;
-                      changeStatus({
-                        index,
-                        todoItem,
-                        status: !status,
-                      });
-                    }}
-                    type="checkbox"
-                    checked={cur.itemDone}
-                  />
+            <div className="listCont">
+              {todos?.map((cur, index) => (
+                <div className={`${cur.itemDone ? "done" : "pending"}`}>
+                  <div className="todoItem">
+                    {/* <h5>{index + 1}</h5> */}
+                    <h5>{cur.todoItem}</h5>
+                    <div>
+                      <input
+                        onChange={() => {
+                          let status = cur.itemDone;
+                          let todoItem = cur.todoItem;
+                          toggleCheckbox(index);
+                          changeStatus({
+                            index,
+                            todoItem,
+                            status: !status,
+                          });
+                        }}
+                        type="checkbox"
+                        id={`checkbox-${index}`}
+                        checked={cur.itemDone}
+                      />
+                      <label htmlFor={`checkbox-${index}`}>
+                        {cur.itemDone ? "DONE" : "TODO"}
+                      </label>
+                    </div>
+                  </div>
+                  <div className="editList">
+                    <button
+                      onClick={() =>
+                        editItem({ index, todoItem: cur.todoItem })
+                      }
+                    >
+                      <FaEdit />
+                    </button>
+                    <button onClick={() => deleteItem(index)}>
+                      <FaTrashAlt />
+                    </button>
+                  </div>
                 </div>
-                <div>
-                  <button
-                    onClick={() => editItem({ index, todoItem: cur.todoItem })}
-                  >
-                    <FaEdit />
-                  </button>
-                  <button onClick={() => deleteItem(index)}>
-                    <FaTrashAlt />
-                  </button>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
             <button onClick={clearItems}>clear items</button>
           </section>
           <AuthDetails />
